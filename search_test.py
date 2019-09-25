@@ -78,3 +78,4 @@ class Problem:
 
 prob = Problem('Arad', 'Craiova', graph)
 print(prob)
+print("is it done well?")
