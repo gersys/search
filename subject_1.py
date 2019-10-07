@@ -81,7 +81,11 @@ class Node:
         # self.action = a
 
     def __str__(self):
-        return 'S: ' + str(self.state) +', P: ' + str(self.parent.state) + ', depth = ' + str(self.depth) + ', cost = ' + str(self.cost)
+        try:
+            return 'S: ' + str(self.state) +', P: ' + str(self.parent.state) + ', depth = ' + str(self.depth) + ', cost = ' + str(self.cost)
+        except AttributeError:
+            return 'S: ' + str(self.state) + ', P: ' + "None" + ', depth = ' + str(self.depth) + ', cost = ' + str(self.cost)
+
 
     def solution(self):
         sol = self.state
@@ -99,7 +103,7 @@ prob=Problem([3,3,1],[0,0,0])
 
 def BFS(prob):
     print("BFS search start")
-    initial_node = Node(prob.init,None,1,0)
+    initial_node = Node(prob.init,None,0,0)
 
     print(initial_node.state)
     frontiers=derive_succ(initial_node)
@@ -130,8 +134,18 @@ def BFS(prob):
     print("solution list")
     for i in sol:
         print(i)
+    print("--------------------------------")
 
+    sol_path(sol)
 
+def sol_path(sol_list):
+    for sol in sol_list:
+        while(sol.parent!=None):
+            print(sol)
+            sol=sol.parent
+        print(sol)
+
+        print("done")
 
 
 
