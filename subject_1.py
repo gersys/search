@@ -12,7 +12,7 @@ class AStar:
 
     def solution(self):
         print("A* search start")
-        initial_node = A_star_Node(self.prob.init, None, 0, self.prob.init[0] + self.prob.init[1], 0)
+        initial_node = A_star_Node(self.prob.init, None, 0, self.prob.init[0], 0)
 
         frontiers = self.derive_succ(initial_node)
         explored.append(initial_node.state)
@@ -93,7 +93,7 @@ class AStar:
     def make_Qnode(self, parent_node, suc_list):
         Q = []
         for i in suc_list:
-            suc_node = A_star_Node(i, parent_node, parent_node.g_cost + 1,i[0]+i[1], parent_node.depth + 1)
+            suc_node = A_star_Node(i, parent_node, parent_node.g_cost + 1,i[0], parent_node.depth + 1)
             if suc_node.state in explored:
                 print("jump")
                 continue
@@ -157,9 +157,9 @@ class A_star_Node:
 prob=Problem([3,3,1],[0,0,0])
 
 
-#astar=AStar(prob)
-#expand=astar.solution()
-#print("Node generated:{}".format(expand))
+astar=AStar(prob)
+expand=astar.solution()
+print("Node generated:{}".format(expand))
 
 
 class Node:
@@ -263,6 +263,7 @@ class BFS:
                 sol.append(f0)
                 break
 
+
             explored.append(f0.state)
             frontiers = frontiers + self.derive_succ(f0)
 
@@ -287,9 +288,9 @@ class BFS:
 
 
 
-bfs=BFS(prob)
-expand=bfs.solution()
-print("Node generated:{}".format(expand))
+#bfs=BFS(prob)
+#expand=bfs.solution()
+#print("Node generated:{}".format(expand))
 
 
 
